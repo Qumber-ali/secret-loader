@@ -1,5 +1,5 @@
 # GoLang Azure Keyvault Secret Loader with Excelize
-![Qamber](https://github.com/Qumber-ali/akv-seret-loader/blob/main/assets/secret_loader.png)
+![Qamber](assets/secret_loader.png)
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)
 
