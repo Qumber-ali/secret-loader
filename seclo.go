@@ -26,16 +26,21 @@ func main() {
 	vault_name := flag.String("akv", "", "name of the akv.")
 
 	flag.Parse()
-
+       
+        var f *excelize.File
+ 
 	if path.IsAbs(*file_path) == true {
-		f, err := excelize.OpenFile(*file_path)
+		f, err = excelize.OpenFile(*file_path)
+                if err != nil {
+                	fmt.Fprintf(os.Stderr, "error: %v\n", err)
+                	os.Exit(1)
+                }
 	} else {
-		f, err := excelize.OpenFile(cwd + "/" + *file_path)
-	}
-
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
-		os.Exit(1)
+		f, err = excelize.OpenFile(cwd + "/" + *file_path)
+                if err != nil {
+                	fmt.Fprintf(os.Stderr, "error: %v\n", err)
+                	os.Exit(1)
+        	}
 	}
 
 	index := f.GetSheetIndex(*sheet_name)
@@ -101,3 +106,4 @@ func CreateKeyValue(cols [][]string, key_flag bool) ([]string, bool, error) {
 	return slice, key_flag, errors.New("key or value as column title didn't exist")
 
 }
+
