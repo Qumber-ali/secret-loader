@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path"
 	azkv "secret-loader/azure_keyvault"
 	"strings"
 
@@ -26,7 +27,11 @@ func main() {
 
 	flag.Parse()
 
-	f, err := excelize.OpenFile(cwd + "/" + *file_path)
+	if path.IsAbs(*file_path) == true {
+		f, err := excelize.OpenFile(*file_path)
+	} else {
+		f, err := excelize.OpenFile(cwd + "/" + *file_path)
+	}
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
