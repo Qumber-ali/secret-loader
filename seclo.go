@@ -25,9 +25,9 @@ func main() {
 	file_path := flag.String("file", "", "path to xlxs file.")
 	sheet_name := flag.String("sheet", "", "name of the sheet in workbook.")
 	provider := flag.String("provider", "", "name of the cloud provider.")
-        secret_manager_name := flag.String("awssm", "", "name of the aws secrets manager instance.")
-        aws_profile := flag.String("profile", "default", "name of the aws profile to load config and credentials from.")
-        vault_name := flag.String("akv", "", "name of the akv.")
+	secret_manager_name := flag.String("awssm", "", "name of the aws secrets manager instance.")
+	aws_profile := flag.String("profile", "default", "name of the aws profile to load config and credentials from.")
+	vault_name := flag.String("akv", "", "name of the akv.")
 
 	flag.Parse()
 
@@ -35,15 +35,15 @@ func main() {
 
 	switch *provider {
 	case "aws":
-	        if *secret_manager_name == "" {
-                  fmt.Fprintf(os.Stderr, "Error: you have provided aws provider but not provided awssm flag containing secret manager instance name.")
-                  os.Exit(1)
-                }
+		if *secret_manager_name == "" {
+			fmt.Fprintf(os.Stderr, "Error: you have provided aws provider but not provided awssm flag containing secret manager instance name.")
+			os.Exit(1)
+		}
 	case "azure":
 		if *vault_name == "" {
-                  fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
-                  os.Exit(1)
-                }
+			fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
+			os.Exit(1)
+		}
 	}
 
 	flag.Parse()

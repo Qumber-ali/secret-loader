@@ -2,8 +2,8 @@ package aws_secrets_manager
 
 import (
 	"fmt"
-	"os"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"os"
 )
 
 func Auth(profile string) *session.Session {
