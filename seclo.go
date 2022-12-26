@@ -6,7 +6,8 @@ import (
 	"fmt"
 	"os"
 	"path"
-	azkv "secret-loader/azure_keyvault"
+	awssm "secret-loader/providers/aws"
+	azkv "secret-loader/providers/azure"
 	"strings"
 
 	"github.com/xuri/excelize/v2"
@@ -23,24 +24,44 @@ func main() {
 
 	file_path := flag.String("file", "", "path to xlxs file.")
 	sheet_name := flag.String("sheet", "", "name of the sheet in workbook.")
-	vault_name := flag.String("akv", "", "name of the akv.")
+	provider := flag.String("provider", "", "name of the cloud provider.")
+        secret_manager_name := flag.String("awssm", "", "name of the aws secrets manager instance.")
+        aws_profile := flag.String("profile", "default", "name of the aws profile to load config and credentials from.")
+        vault_name := flag.String("akv", "", "name of the akv.")
 
 	flag.Parse()
-       
-        var f *excelize.File
- 
+
+	//var vault_name, aws_profile *string
+
+	switch *provider {
+	case "aws":
+	        if *secret_manager_name == "" {
+                  fmt.Fprintf(os.Stderr, "Error: you have provided aws provider but not provided awssm flag containing secret manager instance name.")
+                  os.Exit(1)
+                }
+	case "azure":
+		if *vault_name == "" {
+                  fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
+                  os.Exit(1)
+                }
+	}
+
+	flag.Parse()
+
+	var f *excelize.File
+
 	if path.IsAbs(*file_path) == true {
 		f, err = excelize.OpenFile(*file_path)
-                if err != nil {
-                	fmt.Fprintf(os.Stderr, "error: %v\n", err)
-                	os.Exit(1)
-                }
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %v\n", err)
+			os.Exit(1)
+		}
 	} else {
 		f, err = excelize.OpenFile(cwd + "/" + *file_path)
-                if err != nil {
-                	fmt.Fprintf(os.Stderr, "error: %v\n", err)
-                	os.Exit(1)
-        	}
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %v\n", err)
+			os.Exit(1)
+		}
 	}
 
 	index := f.GetSheetIndex(*sheet_name)
@@ -80,7 +101,16 @@ func main() {
 		os.Exit(1)
 	}
 
-	azkv.LoadSecrets(*vault_name, keys, values)
+	switch *provider {
+	case "aws":
+		if *aws_profile != "default" {
+			awssm.LoadSecrets(*aws_profile, *secret_manager_name, keys, values)
+		} else {
+			awssm.LoadSecrets("default", *secret_manager_name, keys, values)
+		}
+	case "azure":
+		azkv.LoadSecrets(*vault_name, keys, values)
+	}
 
 }
 
@@ -106,4 +136,3 @@ func CreateKeyValue(cols [][]string, key_flag bool) ([]string, bool, error) {
 	return slice, key_flag, errors.New("key or value as column title didn't exist")
 
 }
-
