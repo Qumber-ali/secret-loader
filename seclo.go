@@ -25,25 +25,14 @@ func main() {
 	file_path := flag.String("file", "", "path to xlxs file.")
 	sheet_name := flag.String("sheet", "", "name of the sheet in workbook.")
 	provider := flag.String("provider", "", "name of the cloud provider.")
-	secret_manager_name := flag.String("awssm", "", "name of the aws secrets manager instance.")
 	aws_profile := flag.String("profile", "default", "name of the aws profile to load config and credentials from.")
 	vault_name := flag.String("akv", "", "name of the akv.")
 
 	flag.Parse()
 
-	//var vault_name, aws_profile *string
-
-	switch *provider {
-	case "aws":
-		if *secret_manager_name == "" {
-			fmt.Fprintf(os.Stderr, "Error: you have provided aws provider but not provided awssm flag containing secret manager instance name.")
-			os.Exit(1)
-		}
-	case "azure":
-		if *vault_name == "" {
-			fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
-			os.Exit(1)
-		}
+	if *provider == "azure" && *vault_name == "" {
+		fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
+		os.Exit(1)
 	}
 
 	flag.Parse()
@@ -104,9 +93,9 @@ func main() {
 	switch *provider {
 	case "aws":
 		if *aws_profile != "default" {
-			awssm.LoadSecrets(*aws_profile, *secret_manager_name, keys, values)
+			awssm.LoadSecrets(*aws_profile, keys, values)
 		} else {
-			awssm.LoadSecrets("default", *secret_manager_name, keys, values)
+			awssm.LoadSecrets("default", keys, values)
 		}
 	case "azure":
 		azkv.LoadSecrets(*vault_name, keys, values)
