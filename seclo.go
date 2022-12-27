@@ -93,9 +93,9 @@ func main() {
 	switch *provider {
 	case "aws":
 		if *aws_profile != "default" {
-			awssm.LoadSecrets(*aws_profile, *secret_manager_name, keys, values)
+			awssm.LoadSecrets(*aws_profile, keys, values)
 		} else {
-			awssm.LoadSecrets("default", *secret_manager_name, keys, values)
+			awssm.LoadSecrets("default", keys, values)
 		}
 	case "azure":
 		azkv.LoadSecrets(*vault_name, keys, values)

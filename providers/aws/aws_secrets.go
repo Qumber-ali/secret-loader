@@ -7,7 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/secretsmanager"
 )
 
-func LoadSecrets(aws_profile string, vault_name string, keys []string, secrets []string) {
+func LoadSecrets(aws_profile string, keys []string, secrets []string) {
 
 	session := Auth(aws_profile)
 
