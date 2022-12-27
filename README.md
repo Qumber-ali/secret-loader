@@ -1,4 +1,5 @@
 
+
 # GoLang Secret Loader with Excelize
 ![Qamber](assets/secret_loader.png)
 
@@ -23,7 +24,7 @@ The main package is responsible for serving the entrypoint of module and perform
 * Golang version 1.19.x or above.
 * If **"azure"** is selected as provider, the provided **"akv"** instance needs to be present on your Azure account you are authenticating with.
 * If **"azure"** is selected as provider, **"az login"** should have been run prior to running the secret-loader executable as it for now perform authentication and authorization using the AWS CLI credentials.
-* If **"aws"** is selected as provider, proper profile config should be present inside shared config i.e., **"~/.aws/config"**. You can visit [{https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html]} for understanding and creating named profiles for aws and hence the shared config file. 
+* If **"aws"** is selected as provider, proper profile config should be present inside shared config i.e., **"~/.aws/config"**. You can visit [aws-named-profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) for understanding and creating named profiles for aws and hence the shared config file. 
 
 
 
@@ -56,5 +57,6 @@ Finally run the following command to load the secrets:
 ```
 
 Note you can also move this binary to path that is enrolled in "PATH" environment variable or you can append the binary's path into PATH environment variable to call the executable from anywhere on your filesystem.  
+
 
 
