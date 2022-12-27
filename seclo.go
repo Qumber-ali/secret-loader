@@ -25,7 +25,6 @@ func main() {
 	file_path := flag.String("file", "", "path to xlxs file.")
 	sheet_name := flag.String("sheet", "", "name of the sheet in workbook.")
 	provider := flag.String("provider", "", "name of the cloud provider.")
-	secret_manager_name := flag.String("awssm", "", "name of the aws secrets manager instance.")
 	aws_profile := flag.String("profile", "default", "name of the aws profile to load config and credentials from.")
 	vault_name := flag.String("akv", "", "name of the akv.")
 
