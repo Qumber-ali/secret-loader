@@ -23,7 +23,7 @@ The main package is responsible for serving the entrypoint of module and perform
 * Workbook's sheet should contain coulmn title as **"keys"** and **"values"** (case insensitive) for keys and values respectively.
 * Golang version 1.19.x or above.
 * If **"azure"** is selected as provider, the provided **"akv"** instance needs to be present on your Azure account you are authenticating with.
-* If **"azure"** is selected as provider, **"az login"** should have been run prior to running the secret-loader executable as it for now perform authentication and authorization using the AWS CLI credentials.
+* If **"azure"** is selected as provider, **"az login"** should have been run prior to running the secret-loader executable as it for now perform authentication and authorization using the Azure CLI credentials.
 * If **"aws"** is selected as provider, proper profile config should be present inside shared config i.e., **"~/.aws/config"**. You can visit [aws-named-profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) for understanding and creating named profiles for aws and hence the shared config file. 
 
 
