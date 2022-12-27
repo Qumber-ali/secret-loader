@@ -107,10 +107,21 @@ func CreateKeyValue(cols [][]string, key_flag bool) ([]string, bool, error) {
 
 	for col_index, col := range cols {
 		for row_index, row := range col {
+
 			if strings.EqualFold(row, "key") == true && key_flag == false {
-				keys := cols[col_index][row_index+1 : len(col)]
+				var keys []string
+				keys_buffer := cols[col_index][row_index+1 : len(col)]
 				key_flag = true
+
+				for _, key := range keys_buffer {
+
+					if key != "" {
+						keys = append(keys, key)
+					}
+				}
+
 				return keys, key_flag, nil
+
 			} else {
 				if strings.EqualFold(row, "value") == true {
 					values := cols[col_index][row_index+1 : len(col)]
