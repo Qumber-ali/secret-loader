@@ -1,3 +1,4 @@
+
 # GoLang Secret Loader with Excelize
 ![Qamber](assets/secret_loader.png)
 
@@ -22,7 +23,7 @@ The main package is responsible for serving the entrypoint of module and perform
 * Golang version 1.19.x or above.
 * If **"azure"** is selected as provider, the provided **"akv"** instance needs to be present on your Azure account you are authenticating with.
 * If **"azure"** is selected as provider, **"az login"** should have been run prior to running the secret-loader executable as it for now perform authentication and authorization using the AWS CLI credentials.
-* If "aws" is selected as provider, proper profile config should be present inside shared config i.e., **"~/.aws/config"**. You can visit [{https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html]} for understanding and creating named profiles for aws and hence the shared config file. 
+* If **"aws"** is selected as provider, proper profile config should be present inside shared config i.e., **"~/.aws/config"**. You can visit [{https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html]} for understanding and creating named profiles for aws and hence the shared config file. 
 
 
 
@@ -40,11 +41,13 @@ go get -d ./... && go build seclo.go
 After building the executable you are ready to load secrets.
 
 Finally run the following command to load the secrets:
+<br />  
 **For Loading to AWS Secrets Manager with non-default aws profile**
 
 ```golang
 ./seclo --provider aws --file <path to excel workbook> --profile <aws profile name> --sheet <Sheet name containing keys and vaules>
 ```
+<br />  
 
 **For Loading to Azure Keyvault**
 
@@ -53,4 +56,5 @@ Finally run the following command to load the secrets:
 ```
 
 Note you can also move this binary to path that is enrolled in "PATH" environment variable or you can append the binary's path into PATH environment variable to call the executable from anywhere on your filesystem.  
+
 
