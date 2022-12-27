@@ -30,19 +30,9 @@ func main() {
 
 	flag.Parse()
 
-	//var vault_name, aws_profile *string
-
-	switch *provider {
-	case "aws":
-		if *secret_manager_name == "" {
-			fmt.Fprintf(os.Stderr, "Error: you have provided aws provider but not provided awssm flag containing secret manager instance name.")
-			os.Exit(1)
-		}
-	case "azure":
-		if *vault_name == "" {
-			fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
-			os.Exit(1)
-		}
+	if *provider == "azure" && *vault_name == "" {
+		fmt.Fprintf(os.Stderr, "Error: you have provided azure provider but not provided akv flag containing keyvault name.")
+		os.Exit(1)
 	}
 
 	flag.Parse()
