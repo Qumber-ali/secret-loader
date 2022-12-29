@@ -43,7 +43,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD_GITHUB }}
     
     - name: Print
-      run: echo ${{ github.ref }}
+      run: |
+          export TAG=$(echo "${{ github.ref }}" | cut -d '/' -f 4)")
+          echo "::set-env name=tag::$TAG"
    
 #    - name: Catch git tag for container image tag
 #      run: echo "tag=$(echo "${{ github.ref }}" | cut -d '/' -f 4)" >> $GITHUB_ENV 
