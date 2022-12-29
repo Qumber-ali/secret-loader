@@ -1,9 +1,9 @@
 
 
 # GoLang Secret Loader with Excelize
-![Qamber](assets/secret_loader.png)
+![SecretLoader](assets/secret_loader.png)
 
-[![Go](https://github.com/Qumber-ali/secret-loader/actions/workflows/pipeline_go.yml/badge.svg)](https://github.com/Qumber-ali/secret-loader/actions/workflows/pipeline_go.yml)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@qamber.ali.raza74/akv-secret-loader-using-golang-and-excelize-11248b5f1eef)
+[![Build](https://github.com/Qumber-ali/secret-loader/actions/workflows/pipeline_go.yml/badge.svg)](https://github.com/Qumber-ali/secret-loader/actions/workflows/pipeline_go.yml)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Medium](https://img.shields.io/badge/Medium-black.svg?style=flat&logo=medium)](https://medium.com/@qamber.ali.raza74/akv-secret-loader-using-golang-and-excelize-11248b5f1eef)
 
 This repository contains Golang module named as **"secret-loader"** having three Go packages(main, azure and aws). This Golang module is having two cloud provider options that the end user can make use of by specifyingthe provider of choice(aws or azure) via command line flag argument to the executable. Based on the provider flag argument provided, the service(aws secrets manager or azure keyvault) is picked up for loading secrets into. As one knows, that aws secret manager store stand-alone secrets without creating an instance of aws secrets manager itself unlike it is needed to have an azure keyvault instance to load secrets to, therefore if **"azure"** is provided as provider flag argument so **"akv"** flag argument must be provided which expects the azure keyvault instance name to load secrets into. As stated, no such flag as aws secrets manager name or other needs to be specified while providing **"aws"** as provider flag argument. Alongside the provider command line flag argument, this module also requires excel workbook and sheet name containing **"keys"** and **"values"** that are desired to be loaded into Azure keyvault or aws secrets manager to be provided by their respective command line flag arguments. Flag arguments that are needed or optional to be provided with the executable are as follows:
 
