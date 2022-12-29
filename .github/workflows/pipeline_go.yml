@@ -29,7 +29,7 @@ jobs:
       run: go build -v ./...
       
   build_and_publish_container_package:
-    if: startsWith(github.ref,'refs/tags') != true
+    if: startsWith(github.ref,'refs/tags') == true
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -44,16 +44,11 @@ jobs:
 
     - name: Catch git tag for container image tag
       run: echo "tag=$(echo "${{ github.ref }}" | cut -d '/' -f 4)" >> $GITHUB_ENV 
-  
-    - name: Print
-      run: echo ${{ env.tag }}
       
-#    - name: Build and push docker image
-#      uses: docker/build-push-action@v3
-#      with:
-#        push: true
-#        tags: ghcr.io/qumber-ali/secret-loader:${{ env.tag }} 
-#        build-args: tag=${{ env.tag }} 
-
-
+    - name: Build and push docker image
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: ghcr.io/qumber-ali/secret-loader:${{ env.tag }} 
+        build-args: tag=${{ env.tag }} 
 
