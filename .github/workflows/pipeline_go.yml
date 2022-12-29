@@ -46,6 +46,9 @@ jobs:
       run: slice=$(echo "/ref/tags/v1.0.0" | cut -d '/' -f 4) 
       env:
        tag: $slice
+
+    - name: print 
+      run: echo $tag 
       
 #    - name: Build docker image
 #      uses: docker/build-push-action@v3
