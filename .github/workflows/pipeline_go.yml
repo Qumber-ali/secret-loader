@@ -45,7 +45,7 @@ jobs:
     - name: Catch git tag for container image tag
       run: slice=$(echo "/ref/tags/v1.0.0" | cut -d '/' -f 4) 
       env:
-       tag: $slice
+       tag: v2.0.0
 
     - name: print 
       run: echo ${{ env.tag }} 
