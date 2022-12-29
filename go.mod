@@ -1,11 +1,11 @@
-module github.com/Qumber-ali/secret-loader
+module github.com/Qumber-ali/secret-loader/v2
 
 go 1.19
 
 require (
 	github.com/Azure/azure-sdk-for-go v67.2.0+incompatible
 	github.com/Azure/go-autorest/autorest/azure/auth v0.5.11
-	github.com/aws/aws-sdk-go v1.44.167
+	github.com/aws/aws-sdk-go v1.44.169
 	github.com/aws/aws-sdk-go-v2/config v1.18.7
 	github.com/xuri/excelize/v2 v2.6.1
 )
