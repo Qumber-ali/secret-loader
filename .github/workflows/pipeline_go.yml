@@ -42,8 +42,8 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME_GITHUB }}
         password: ${{ secrets.DOCKER_PASSWORD_GITHUB }}
     
-     - name: Print
-       run: echo ${ GITHUB_REF }}
+    - name: Print
+      run: echo ${ GITHUB_REF }}
    
 #    - name: Catch git tag for container image tag
 #      run: echo "tag=$(echo "${{ github.ref }}" | cut -d '/' -f 4)" >> $GITHUB_ENV 
@@ -54,4 +54,5 @@ jobs:
 #        push: true
 #        tags: ghcr.io/qumber-ali/secret-loader:${{ env.tag }} 
 #        build-args: tag=${{ env.tag }} 
+
 
