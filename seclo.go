@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 	"path"
-	awssm "github.com/Qumber-ali/secret-loader/providers/aws"
-	azkv "github.com/Qumber-ali/secret-loader/providers/azure"
+	awssm "github.com/Qumber-ali/secret-loader/v2/providers/aws"
+	azkv "github.com/Qumber-ali/secret-loader/v2/providers/azure"
 	"strings"
 
 	"github.com/xuri/excelize/v2"
