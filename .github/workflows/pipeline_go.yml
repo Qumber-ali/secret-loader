@@ -48,7 +48,7 @@ jobs:
        tag: v2.0.0
 
     - name: print 
-      run: echo ${{ env.tag }} 
+      run: echo "$tag" 
 
       
 #    - name: Build docker image
