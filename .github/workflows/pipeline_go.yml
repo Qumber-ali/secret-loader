@@ -29,7 +29,7 @@ jobs:
       run: go build -v ./...
       
   build_and_publish_container_package:
-    if: startsWith(github.ref,'refs/tags') != true
+    if: contains(github.ref,'refs/tags') != true
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -43,7 +43,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD_GITHUB }}
     
      - name: Print
-       run: echo ${{ github.ref }}
+       run: echo ${ GITHUB_REF }}
    
 #    - name: Catch git tag for container image tag
 #      run: echo "tag=$(echo "${{ github.ref }}" | cut -d '/' -f 4)" >> $GITHUB_ENV 
