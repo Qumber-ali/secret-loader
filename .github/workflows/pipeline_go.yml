@@ -27,9 +27,10 @@ jobs:
 
     - name: Go build
       run: go build -v ./...
-   
+      
   build_and_publish_container_package:
-    if: $GITHUB_REF == "ref/tags/*.*.*"
+    if: ${{ GITHUB_REF }} == 'ref/tags/*.*.*'
+    steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
@@ -49,5 +50,6 @@ jobs:
       with:
         push: true
         tags: ghcr.io/qumber-ali/secret-loader:$tag   
+
 
 
