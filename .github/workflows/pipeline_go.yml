@@ -29,7 +29,7 @@ jobs:
       run: go build -v ./...
       
   build_and_publish_container_package:
-    if: ${{ github.ref }} == 'ref/tags/v*.*.*'
+    if: startWith(github.ref,'ref/tags') != true
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -47,11 +47,11 @@ jobs:
       env:
        tag: $slice
       
-    - name: Build docker image
-      uses: docker/build-push-action@v3
-      with:
-        push: true
-        tags: ghcr.io/qumber-ali/secret-loader:$tag   
+#    - name: Build docker image
+#      uses: docker/build-push-action@v3
+#      with:
+#        push: true
+#        tags: ghcr.io/qumber-ali/secret-loader:$tag   
 
 
 
