@@ -48,7 +48,8 @@ jobs:
        tag: $slice
 
     - name: print 
-      run: echo $tag 
+      run: echo ${{ env.tag }} 
+
       
 #    - name: Build docker image
 #      uses: docker/build-push-action@v3
