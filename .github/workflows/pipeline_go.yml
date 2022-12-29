@@ -30,6 +30,7 @@ jobs:
       
   build_and_publish_container_package:
     if: ${{ github.ref }} == 'ref/tags/*.*.*'
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
