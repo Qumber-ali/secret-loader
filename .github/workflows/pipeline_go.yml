@@ -43,12 +43,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD_GITHUB }}
 
     - name: Catch git tag for container image tag
-      run: slice=$(echo "/ref/tags/v1.0.0" | cut -d '/' -f 4) 
-      env:
-       tag: v2.0.0
+      run: echo "tag=$(echo "/ref/tags/v1.0.0" | cut -d '/' -f 4)" >> $GITHUB_ENV 
 
     - name: print 
-      run: echo "$tag" 
+      run: echo "${{ env.tag }}" 
 
       
 #    - name: Build docker image
