@@ -45,11 +45,12 @@ jobs:
     - name: Catch git tag for container image tag
       run: echo "tag=$(echo "/ref/tags/v1.0.0" | cut -d '/' -f 4)" >> $GITHUB_ENV 
       
-    - name: Build docker image
+    - name: Build and push docker image
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/qumber-ali/secret-loader:${{ env.tag }}  
+        tags: ghcr.io/qumber-ali/secret-loader:${{ env.tag }} 
+        build-args: tag=${{ env.tag }} 
 
 
 
