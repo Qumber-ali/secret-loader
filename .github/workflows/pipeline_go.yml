@@ -28,7 +28,7 @@ jobs:
     - name: Go build
       run: go build -v ./...
    
-  build and publish container package:
+  build_and_publish_container_package:
     if: $GITHUB_REF == "ref/tags/*.*.*"
     - name: Checkout repository
       uses: actions/checkout@v3
