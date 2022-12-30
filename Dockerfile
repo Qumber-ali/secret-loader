@@ -2,6 +2,8 @@ FROM golang:1.19-alpine as builder
 
 WORKDIR /app
 
+ARG tag
+
 RUN apk update && apk add git
 
 RUN git clone https://github.com/Qumber-ali/akv-secret-loader.git . &&\
