@@ -29,6 +29,7 @@ The main package is responsible for serving the entrypoint of module and perform
 
 
 A step by step guide is as follows:
+
 You can install it using `go install` directly from terminal:
 ```golang
 go install github.com/Qumber-ali/secret-loader@latest
